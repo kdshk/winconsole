@@ -144,9 +144,9 @@ func setConsoleQuickEditMode(handle syscall.Handle, enable bool) error {
 	if r != 0 {
 		lpMode |= ENABLE_EXTENDED_FLAGS	
 		if enable {
-			lpMode &= ^uint32(ENABLE_QUICK_EDIT_MODE)
-		} else {
 			lpMode |= ENABLE_QUICK_EDIT_MODE
+		} else {
+			lpMode &= ^uint32(ENABLE_QUICK_EDIT_MODE)
 		}
 			r , _ , err = syscall.Syscall(uintptr(procSetConsoleMode), 2,
 			uintptr(handle), 
